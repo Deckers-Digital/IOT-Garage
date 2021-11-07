@@ -65,8 +65,7 @@ void receivedCallback( const uint32_t &from, const String &msg ) {
   Serial.printf("bridge: Received from %u msg=%s\n", from, msg.c_str());
   String topic = "painlessMesh/from/" + String(from);
   mqttClient.publish(topic.c_str(), msg.c_str());
-  String test = "I am Master";
-  mesh.sendBroadcast("I am Master");
+  mesh.sendSingle(from, "I am Master");
 }
 
 void mqttCallback(char* topic, uint8_t* payload, unsigned int length) {
